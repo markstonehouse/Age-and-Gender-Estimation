@@ -4,11 +4,12 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.example.mark.estimation"
-        minSdkVersion 15
+        minSdkVersion 17
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        android.defaultConfig.vectorDrawables.useSupportLibrary = true
 
         ndk {
             moduleName "detection_based_tracker"
