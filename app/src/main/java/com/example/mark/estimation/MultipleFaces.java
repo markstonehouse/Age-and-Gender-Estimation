@@ -14,6 +14,13 @@ import org.opencv.core.Mat;
 
 import java.util.ArrayList;
 
+/**
+ * Author: Mark Stonehouse
+ * Student ID: 15085629
+ * Project: Age & Gender Estimation - MMU Final Year Project
+ * Supervisor: Dr Moi Hoon Yap
+ * Version: 1.0
+ */
 public class MultipleFaces extends AppCompatActivity {
 
     private final String TAG = "Estimation";
@@ -26,17 +33,14 @@ public class MultipleFaces extends AppCompatActivity {
         Intent getIntent = getIntent();
         final long[] multipleFaces = getIntent.getLongArrayExtra(("multipleFaces"));
 
-        ArrayList<ExtractedFaceRow> bitmaps = new ArrayList<ExtractedFaceRow>();
+        ArrayList<MultipleFaceRow> bitmaps = new ArrayList<MultipleFaceRow>();
 
-        for (long face : multipleFaces) {
-            Mat image = new Mat(face);
-            Mat img = image.clone();
+        for (long faceAsLong : multipleFaces) {
+            Mat extractedFace = new Mat(faceAsLong);
 
-            Log.d(TAG, "Width: " + img.cols() + "\n Height: " + img.rows());
-
-            Bitmap imgBitmap = Bitmap.createBitmap(img.cols(), img.rows(), Bitmap.Config.ARGB_8888);
-            Utils.matToBitmap(img, imgBitmap);
-            bitmaps.add(new ExtractedFaceRow(imgBitmap));
+            Bitmap imgBitmap = Bitmap.createBitmap(extractedFace.cols(), extractedFace.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(extractedFace, imgBitmap);
+            bitmaps.add(new MultipleFaceRow(imgBitmap));
         }
 
         CustomAdapter customAdapter = new CustomAdapter(MultipleFaces.this, bitmaps);

@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="E:\GitHub\Estimation\openCVLibrary\src\main\assets"/><source path="E:\GitHub\Estimation\openCVLibrary\build\generated\assets\shaders\debug"/></dataSet><dataSet config="debug"><source path="E:\GitHub\Estimation\openCVLibrary\src\debug\assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="E:\GitHub\Age-and-Gender-Estimation\openCVLibrary\src\main\assets"/><source path="E:\GitHub\Age-and-Gender-Estimation\openCVLibrary\build\generated\assets\shaders\debug"/></dataSet><dataSet config="debug"><source path="E:\GitHub\Age-and-Gender-Estimation\openCVLibrary\src\debug\assets"/></dataSet></merger>

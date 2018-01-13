@@ -2,15 +2,17 @@ package com.example.mark.estimation;
 
 import android.graphics.Bitmap;
 
-
 /**
  * Author: Mark Stonehouse
+ * Student ID: 15085629
+ * Project: Age & Gender Estimation - MMU Final Year Project
+ * Supervisor: Dr Moi Hoon Yap
  * Version: 1.0
  */
-public class ExtractedFaceRow {
+public class MultipleFaceRow {
     public Bitmap faceImage;
 
-    public ExtractedFaceRow(Bitmap image) {
+    public MultipleFaceRow(Bitmap image) {
         this.faceImage = image;
     }
 }

@@ -14,6 +14,13 @@ import org.opencv.android.JavaCameraView;
 import org.opencv.android.Utils;
 import org.opencv.core.Mat;
 
+/**
+ * Author: Mark Stonehouse
+ * Student ID: 15085629
+ * Project: Age & Gender Estimation - MMU Final Year Project
+ * Supervisor: Dr Moi Hoon Yap
+ * Version: 1.0
+ */
 public class EstimateFace extends AppCompatActivity {
 
     @Override
@@ -22,20 +29,20 @@ public class EstimateFace extends AppCompatActivity {
         setContentView(R.layout.activity_estimate_face);
 
         Intent getIntent = getIntent();
-        long face = getIntent.getLongExtra("extractedFace", 0);
-        Mat image = new Mat(face);
-        Mat img = image.clone();
+        long extractedFaceAsLong = getIntent.getLongExtra("extractedFace", 0);
+        Mat extractedFace = new Mat(extractedFaceAsLong);
+//        Mat img = extractedFaceAsMat.clone();
 
         final ImageView imageView = findViewById(R.id.imageView);
 
-        if (img.cols() == 0 && img.rows() == 0) {
+        if (extractedFace.cols() == 0 && extractedFace.rows() == 0) {
             Toast toast = Toast.makeText(this, "Error handling images.", Toast.LENGTH_SHORT);
             toast.show();
         } else {
-            Bitmap bitmap = Bitmap.createBitmap(img.cols(), img.rows(), Bitmap.Config.ARGB_8888);
-            Utils.matToBitmap(img, bitmap);
+            Bitmap extractFaceAsBitmap = Bitmap.createBitmap(extractedFace.cols(), extractedFace.rows(), Bitmap.Config.ARGB_8888);
+            Utils.matToBitmap(extractedFace, extractFaceAsBitmap);
 
-            imageView.setImageBitmap(bitmap);
+            imageView.setImageBitmap(extractFaceAsBitmap);
         }
 
         /**

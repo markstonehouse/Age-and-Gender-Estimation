@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Estimation</string>
+    <string name="app_name">Age &amp; Gender Est</string>
     <string name="app_title">Age &amp; Gender Estimation</string>
 
-    <!-- MainMenu strings -->
+    <!-- MainMenu button text -->
     <string name="capture_image_text">Capture Image</string>
     <string name="import_image_text">Import Image</string>
 
-    <!-- BackButton string -->
+    <!-- BackButton description -->
     <string name="back_button_description">Back button to return to main menu</string>
 
-    <string name="mutliple_face_text">Multiple faces detected.</string>
+    <!-- Estimation face text -->
     <string name="estimate_face">Estimate</string>
+
+    <!-- MultipleFaces activity text -->
+    <string name="mutliple_face_text">Multiple faces detected.</string>
+    <string name="select_a_face_text">Select a face below to begin estimation.</string>
 
     <!-- ResultsActivity -->
     <string name="results_text">Results</string>
     <string name="new_estimation_text">New Estimation</string>
-
 </resources>

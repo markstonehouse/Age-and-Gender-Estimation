@@ -21,12 +21,22 @@ import org.opencv.core.Rect;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Author: Mark Stonehouse
+ * Student ID: 15085629
+ * Project: Age & Gender Estimation - MMU Final Year Project
+ * Supervisor: Dr Moi Hoon Yap
+ * Version: 1.0
+ */
 public class ImportImage extends AppCompatActivity {
 
     private final String TAG = "Estimation";
 
     private Rect[] extractedFace;
 
+    /**
+     * Object that handles face detection - OpenCV
+     */
     private FaceDetection faceDetection;
 
     private final int RESULT_GALLERY = 0;
@@ -76,15 +86,15 @@ public class ImportImage extends AppCompatActivity {
 
             extractedFace = faceDetection.detectFaces(imgMatRgba, imgMatGray);
 
-            if (extractedFace == null) {
+            Log.d(TAG, "Face total: " + extractedFace.length);
+
+            if (extractedFace.length == 0) {
                 Toast toast = Toast.makeText(this, "No face detected. Please select another image.", Toast.LENGTH_LONG);
                 toast.show();
 
-                Log.d(TAG, "Image: " + extractedFace);
-
                 selectNewImage();
 
-            } else if (extractedFace.length != 1) {
+            } else if (extractedFace.length > 1) {
                 long[] matFaces = new long[extractedFace.length];
                 for (int i = 0; i < extractedFace.length; i++) {
                     Mat matFace = imgMatRgba.submat(extractedFace[i]);
@@ -108,6 +118,8 @@ public class ImportImage extends AppCompatActivity {
                 Toast toast = Toast.makeText(this, "Error performing face detection.", Toast.LENGTH_LONG);
                 toast.show();
             }
+        } else if (resultCode == RESULT_CANCELED) {
+            finish();
         }
     }   // onActivityResult
 }

@@ -11,16 +11,19 @@ import java.util.ArrayList;
 
 /**
  * Author: Mark Stonehouse
+ * Student ID: 15085629
+ * Project: Age & Gender Estimation - MMU Final Year Project
+ * Supervisor: Dr Moi Hoon Yap
  * Version: 1.0
  */
-public class CustomAdapter extends ArrayAdapter<ExtractedFaceRow> {
-    public CustomAdapter(Context context, ArrayList<ExtractedFaceRow> bitmaps) {
+public class CustomAdapter extends ArrayAdapter<MultipleFaceRow> {
+    public CustomAdapter(Context context, ArrayList<MultipleFaceRow> bitmaps) {
         super(context, 0, bitmaps);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ExtractedFaceRow extractedFaceRow = getItem(position);
+        MultipleFaceRow extractedFaceRow = getItem(position);
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.customadapter_row_layout, parent, false);

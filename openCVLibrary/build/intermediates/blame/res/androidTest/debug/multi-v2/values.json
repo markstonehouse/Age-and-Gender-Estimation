@@ -3,6 +3,10 @@
         {
             "outputFile": "E:\\GitHub\\Estimation\\openCVLibrary\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
             "map": []
+        },
+        {
+            "outputFile": "E:\\GitHub\\Age-and-Gender-Estimation\\openCVLibrary\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
+            "map": []
         }
     ]
 }

@@ -1,8 +1,5 @@
 package com.example.mark.estimation;
 
-/**
- * Created by Mark on 02/01/2018.
- */
 
 import android.content.Context;
 import android.graphics.Color;
@@ -25,12 +22,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
+/**
+ * Author: Mark Stonehouse
+ * Student ID: 15085629
+ * Project: Age & Gender Estimation - MMU Final Year Project
+ * Supervisor: Dr Moi Hoon Yap
+ * Version: 1.0
+ */
 public class FaceDetection {
 
     private Context context;
 
     private static final String    TAG                 = "Estimation";
-    private static Scalar          FACE_RECT_COLOR;
     private static final int       JAVA_DETECTOR       = 0;
     private static final int       NATIVE_DETECTOR     = 1;
 
@@ -46,8 +49,6 @@ public class FaceDetection {
 
     public FaceDetection(Context c) {
         context = c;
-
-        FACE_RECT_COLOR = getFaceRectColour();
 
         mDetectorName = new String[2];
         mDetectorName[JAVA_DETECTOR] = "Java";
@@ -116,22 +117,7 @@ public class FaceDetection {
 
         Rect[] facesArray = faces.toArray();
 
-        for (int i = 0; i < facesArray.length; i++) {
-            Imgproc.rectangle(mRgba, facesArray[i].tl(), facesArray[i].br(), FACE_RECT_COLOR, 3);
-        }
-
         return facesArray;
-    }
-
-    private Scalar getFaceRectColour() {
-
-        int colorAccent = context.getResources().getColor(R.color.colorAccent);
-
-        int R = (colorAccent >> 16) & 0xff;
-        int G = (colorAccent >>  8) & 0xff;
-        int B = (colorAccent      ) & 0xff;
-
-        return new Scalar(R, G, B);
     }
 }
 

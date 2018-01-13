@@ -5,6 +5,13 @@ import android.util.Log;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfRect;
 
+/**
+ * Author: Mark Stonehouse
+ * Student ID: 15085629
+ * Project: Age & Gender Estimation - MMU Final Year Project
+ * Supervisor: Dr Moi Hoon Yap
+ * Version: 1.0
+ */
 public class DetectionBasedTracker
 {
     public DetectionBasedTracker(String cascadeName, int minFaceSize) {

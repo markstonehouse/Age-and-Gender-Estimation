@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Estimation.iml" filepath="$PROJECT_DIR$/Estimation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Age-and-Gender-Estimation.iml" filepath="$PROJECT_DIR$/Age-and-Gender-Estimation.iml" />
+      <module fileurl="file://E:\GitHub\Age-and-Gender-Estimation\Estimation.iml" filepath="E:\GitHub\Age-and-Gender-Estimation\Estimation.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/openCVLibrary/openCVLibrary.iml" filepath="$PROJECT_DIR$/openCVLibrary/openCVLibrary.iml" />
     </modules>
