@@ -9,6 +9,8 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 /**
  * Author: Mark Stonehouse
@@ -19,8 +21,9 @@ import android.widget.Button;
  */
 public class MainMenu extends AppCompatActivity {
 
-    private static final String TAG = "Estimation";
-
+    /**
+     * PERMISSIONS_GRANTED constant used for providing a value during permission check
+     */
     private static final int PERMISSIONS_GRANTED = 0;
 
     @Override
@@ -28,6 +31,7 @@ public class MainMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
+        // Call permission check on app startup
         checkForPermissions();
 
         /**
@@ -54,8 +58,24 @@ public class MainMenu extends AppCompatActivity {
 
             }
         }); // btn_importImage
+
+        /**
+         * Button to start new DnnTest activity
+         */
+        final Button btn_dnnTest = findViewById(R.id.btn_dnnTest);
+        btn_dnnTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent dnnIntent = new Intent(MainMenu.this, DnnTest.class);
+                startActivity(dnnIntent);
+
+            }
+        }); // btn_dnnTest
     }   // onCreate
 
+    /**
+     * Check user has allowed application to use services needing defined permissions
+     */
     private void checkForPermissions() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) +
                 ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -64,30 +84,57 @@ public class MainMenu extends AppCompatActivity {
                     new String[]{Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE},
                     PERMISSIONS_GRANTED);
         } else {
-            final Button btn_captureImage = findViewById(R.id.btn_captureImage);
-            btn_captureImage.setEnabled(true);
-
-            final Button btn_importImage = findViewById(R.id.btn_importImage);
-            btn_importImage.setEnabled(true);
+            // Activate menu buttons
+            activeMenuButtons(true, true);
         }
-    }
+    }   // checkForPermissions
 
+    /**
+     * Handles responses from user granting or denying application permissions
+     */
     @Override
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
         switch (requestCode) {
             case PERMISSIONS_GRANTED: {
                 if (grantResults.length > 0) {
                     if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                        final Button btn_captureImage = findViewById(R.id.btn_captureImage);
-                        btn_captureImage.setEnabled(true);
+                        activeMenuButtons(true, false);
                     }
                     if (grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-                        final Button btn_importImage = findViewById(R.id.btn_importImage);
-                        btn_importImage.setEnabled(true);
+                        activeMenuButtons(false, true);
+                    }
+                    if (grantResults[0] == PackageManager.PERMISSION_DENIED &&
+                            grantResults[1] == PackageManager.PERMISSION_DENIED) {
+                        Toast toast = Toast.makeText(this, "Application requires permissions.", Toast.LENGTH_SHORT);
+                        toast.show();
                     }
                 }
                 return;
             }
         }
     }
+
+    /**
+     * Activates and colours menu buttons upon granting of app permissions
+     */
+    private void activeMenuButtons(boolean cameraPermission, boolean storagePermission) {
+        if (cameraPermission) {
+            final Button btn_captureImage = findViewById(R.id.btn_captureImage);
+            btn_captureImage.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            btn_captureImage.setEnabled(true);
+
+        }
+        if (storagePermission) {
+            final Button btn_importImage = findViewById(R.id.btn_importImage);
+            btn_importImage.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            btn_importImage.setEnabled(true);
+        }
+    }
+
+    /**
+     * @return Tag name "Estimation" when printing to Logcat - accessible throughout the app
+     */
+    protected static String getTag() {
+        return "Estimation";
+    }   // getTag
 }

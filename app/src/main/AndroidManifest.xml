@@ -27,6 +27,9 @@
         android:name="android.hardware.camera.front.autofocus"
         android:required="false" />
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -44,7 +47,8 @@
         <activity android:name=".CaptureImage" />
         <activity android:name=".ImportImage" />
         <activity android:name=".EstimateFace" />
-        <activity android:name=".MultipleFaces"></activity>
+        <activity android:name=".MultipleFaces" />
+        <activity android:name=".DnnTest" />
     </application>
 
 </manifest>

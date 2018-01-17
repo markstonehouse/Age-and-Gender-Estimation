@@ -4,15 +4,15 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import org.opencv.android.JavaCameraView;
 import org.opencv.android.Utils;
 import org.opencv.core.Mat;
+
+import static com.example.mark.estimation.MainMenu.getTag;
 
 /**
  * Author: Mark Stonehouse
@@ -23,6 +23,8 @@ import org.opencv.core.Mat;
  */
 public class EstimateFace extends AppCompatActivity {
 
+    private static final String TAG = getTag();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +33,6 @@ public class EstimateFace extends AppCompatActivity {
         Intent getIntent = getIntent();
         long extractedFaceAsLong = getIntent.getLongExtra("extractedFace", 0);
         Mat extractedFace = new Mat(extractedFaceAsLong);
-//        Mat img = extractedFaceAsMat.clone();
 
         final ImageView imageView = findViewById(R.id.imageView);
 

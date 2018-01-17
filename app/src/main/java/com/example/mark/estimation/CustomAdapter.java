@@ -16,7 +16,13 @@ import java.util.ArrayList;
  * Supervisor: Dr Moi Hoon Yap
  * Version: 1.0
  */
+
+/**
+ * CustomAdapater is used in the MultipleFaces activity.
+ * It is used to handle and style faces extracted from an image.
+ */
 public class CustomAdapter extends ArrayAdapter<MultipleFaceRow> {
+
     public CustomAdapter(Context context, ArrayList<MultipleFaceRow> bitmaps) {
         super(context, 0, bitmaps);
     }

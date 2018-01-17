@@ -11,8 +11,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
 import org.opencv.android.JavaCameraView;
+import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.Utils;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
@@ -84,9 +86,7 @@ public class ImportImage extends AppCompatActivity {
             Mat imgMatGray = new Mat (bitmap.getHeight(), bitmap.getWidth(), CvType.CV_8UC1);
             Utils.bitmapToMat(bitmap, imgMatGray);
 
-            extractedFace = faceDetection.detectFaces(imgMatRgba, imgMatGray);
-
-            Log.d(TAG, "Face total: " + extractedFace.length);
+            extractedFace = faceDetection.detectFaces(imgMatGray);
 
             if (extractedFace.length == 0) {
                 Toast toast = Toast.makeText(this, "No face detected. Please select another image.", Toast.LENGTH_LONG);
