@@ -32,7 +32,6 @@ android {
 
 
 
-
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:26.1.0'
@@ -42,6 +41,5 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation project(':openCVLibrary')
-    compile files('libs/libandroid_tensorflow_inference_java.jar')
-    compile 'com.flurgle:camerakit:0.9.13'
+    implementation project(':tensorflow')
 }

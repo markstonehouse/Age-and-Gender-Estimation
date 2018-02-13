@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/Age-and-Gender-Estimation.iml" filepath="$PROJECT_DIR$/Age-and-Gender-Estimation.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/openCVLibrary/openCVLibrary.iml" filepath="$PROJECT_DIR$/openCVLibrary/openCVLibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tensorflow/tensorflow.iml" filepath="$PROJECT_DIR$/tensorflow/tensorflow.iml" />
     </modules>
   </component>
 </project>

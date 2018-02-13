@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 /**
  * Author: Mark Stonehouse
  * Student ID: 15085629
- * Project: Age & Gender Estimation - MMU Final Year Project
+ * Project: Age & Gender EstimateFaceFragment - MMU Final Year Project
  * Supervisor: Dr Moi Hoon Yap
  * Version: 1.0
  */
