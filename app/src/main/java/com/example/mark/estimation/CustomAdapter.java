@@ -12,13 +12,13 @@ import java.util.ArrayList;
 /**
  * Author: Mark Stonehouse
  * Student ID: 15085629
- * Project: Age & Gender Estimation - MMU Final Year Project
+ * Project: Age & Gender EstimateFaceFragment - MMU Final Year Project
  * Supervisor: Dr Moi Hoon Yap
  * Version: 1.0
  */
 
 /**
- * CustomAdapater is used in the MultipleFaces activity.
+ * CustomAdapater is used in the MultipleFacesFragment activity.
  * It is used to handle and style faces extracted from an image.
  */
 public class CustomAdapter extends ArrayAdapter<MultipleFaceRow> {

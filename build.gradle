@@ -25,3 +25,6 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+// set to 'bazel', 'cmake', 'makefile', 'none'
+def nativeBuildSystem = 'none'

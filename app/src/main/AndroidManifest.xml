@@ -36,7 +36,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:hardwareAccelerated="false"
+        android:largeHeap="true">
         <activity android:name=".MainMenu">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -44,11 +46,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CaptureImage" />
-        <activity android:name=".ImportImage" />
-        <activity android:name=".EstimateFace" />
-        <activity android:name=".MultipleFaces" />
-        <activity android:name=".DnnTest" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".MultipleFacesFragment" />
     </application>
 
 </manifest>

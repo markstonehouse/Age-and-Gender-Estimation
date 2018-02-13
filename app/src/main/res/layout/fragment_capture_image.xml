@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.mark.estimation.MainActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_captureImage"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btn_backButton_captureImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        app:layout_constraintStart_toStartOf="@+id/toolbar_captureImage"
+        app:layout_constraintTop_toTopOf="@+id/toolbar_captureImage"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar_captureImage"
+        app:srcCompat="@drawable/arrow_back_black" />
+
+    <TextView
+        android:id="@+id/import_image_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/capture_image_text"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar_captureImage"
+        app:layout_constraintStart_toEndOf="@+id/btn_backButton_captureImage"
+        app:layout_constraintTop_toTopOf="@+id/toolbar_captureImage" />
+
+    <org.opencv.android.JavaCameraView
+        android:id="@+id/cameraView_captureImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="visible"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_captureImage"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/btn_extractFace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:clickable="false"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="@android:color/white"
+        android:text="@string/estimate_face"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

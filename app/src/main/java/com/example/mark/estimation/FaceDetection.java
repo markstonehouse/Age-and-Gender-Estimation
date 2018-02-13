@@ -1,8 +1,11 @@
 package com.example.mark.estimation;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.util.Log;
 
+import org.opencv.android.Utils;
+import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfRect;
 import org.opencv.core.Rect;
@@ -13,13 +16,14 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 
 import static com.example.mark.estimation.MainMenu.getTag;
 
 /**
  * Author: Mark Stonehouse
  * Student ID: 15085629
- * Project: Age & Gender Estimation - MMU Final Year Project
+ * Project: Age & Gender EstimateFaceFragment - MMU Final Year Project
  * Supervisor: Dr Moi Hoon Yap
  * Version: 1.0
  */
@@ -30,7 +34,7 @@ import static com.example.mark.estimation.MainMenu.getTag;
  */
 public class FaceDetection {
 
-    // Get tag name "Estimation" to use when printing to Logcat
+    // Get tag name "EstimateFaceFragment" to use when printing to Logcat
     private static final String TAG = getTag();
 
     private Context context;
@@ -95,8 +99,27 @@ public class FaceDetection {
      * detectFaces is responsible for the searching of faces in a given mat then returning
      * an array of rect.
      */
-    public Rect[] detectFaces(Mat mGray) {
+    public ArrayList<Bitmap> detectFacesInImage(Bitmap bitmap) {
 
+        Mat mGray = new Mat (bitmap.getHeight(), bitmap.getWidth(), CvType.CV_8UC1);
+        Utils.bitmapToMat(bitmap, mGray);
+
+        Rect[] identifiedFaces = detectFaces(mGray);
+
+        ArrayList<Bitmap> bitmapsArray = new ArrayList();
+
+        for (int i = 0; i < identifiedFaces.length; i++) {
+            bitmapsArray.add(getBitmapOfFace(identifiedFaces[i], mGray));
+        }
+
+        return bitmapsArray;
+    }   // detectFacesInImage()
+
+    public Rect[] detectFacesInCapture(Mat mGray) {
+        return detectFaces(mGray);
+    }   // detectFacesInCapture()
+
+    private Rect[] detectFaces(Mat mGray) {
         if (mAbsoluteFaceSize == 0) {
             int height = mGray.rows();
             if (Math.round(height * mRelativeFaceSize) > 0) {
@@ -123,6 +146,15 @@ public class FaceDetection {
         Rect[] identifiedFaces = foundFaces.toArray();
 
         return identifiedFaces;
-    }
+    }   // detectFaces()
+
+    private Bitmap getBitmapOfFace(Rect extractedFaces, Mat matFaceToExtract) {
+        Mat matFace = matFaceToExtract.submat(extractedFaces);
+
+        Bitmap faceAsBitmap = Bitmap.createBitmap(matFace.cols(), matFace.rows(), Bitmap.Config.ARGB_8888);
+        Utils.matToBitmap(matFace, faceAsBitmap);
+
+        return faceAsBitmap;
+    }   // getBitmapOfFace()
 }
 

@@ -13,12 +13,12 @@
     <string name="app_logo_description">Logo of the application</string>
     <string name="estimate_bitmap_description">Image of bitmap of face for Estimation</string>
 
-    <!-- Estimation face text -->
+    <!-- EstimateFaceFragmentFace text -->
     <string name="estimate_face">Estimate</string>
 
     <string name="select_new_image_text">Select new image</string>
 
-    <!-- MultipleFaces activity text -->
+    <!-- MultipleFacesFragment text -->
     <string name="multiple_face_text">Multiple faces detected.</string>
     <string name="select_a_face_text">Select a face below to begin estimation.</string>
 
@@ -26,5 +26,8 @@
     <string name="results_text">Results</string>
     <string name="new_estimation_text">New Estimation</string>
     <string name="title_activity_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
