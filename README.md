@@ -13,7 +13,7 @@ An Android application utilising the OpenCV and Tensorflow frameworks to develop
 
 ## TODO
 - [ ] General
-  - [-] Change application logo to updated minimal background icon.
+  - [X] Change application logo to updated minimal background icon.
   - [ ]  Replace Toast messages with Snackbar messages for neater UI alerts.
 - [ ] Capture Image
   - [ ] Add front facing camera functionality.
