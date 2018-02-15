@@ -3,6 +3,7 @@ package com.example.mark.estimation;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
@@ -144,6 +145,7 @@ public class CaptureImageFragment extends Fragment implements CameraBridgeViewBa
         } else if (extractedFace.length > 1) {
             Toast.makeText(getActivity(), "Multiple faces detected: "
                     + extractedFace.length, Toast.LENGTH_SHORT).show();
+//            Snackbar.make().show();
         } else {
             Toast.makeText(getActivity(), "No face detected.", Toast.LENGTH_SHORT).show();
         }
