@@ -15,6 +15,8 @@ An Android application utilising the OpenCV and Tensorflow frameworks to develop
 - [ ] General
   - [X] Change application logo to updated minimal background icon.
   - [ ]  Replace Toast messages with Snackbar messages for neater UI alerts.
+- [ ] Main Menu
+  - [ ] Remove DNN Test button from main menu.
 - [ ] Capture Image
   - [ ] Add front facing camera functionality.
   - [ ] Add graphic to UI alerting user to rotate screen for better image capture.
