@@ -21,7 +21,7 @@ An Android application utilising the OpenCV and Tensorflow frameworks to develop
   - [ ] Add front facing camera functionality.
   - [ ] Add graphic to UI alerting user to rotate screen for better image capture.
 - [X] Import Image
-  -[ ] ~~Restyle native gallery intent to theme of application.~~
+  - [ ] ~~Restyle native gallery intent to theme of application.~~
 - [ ] Multiple Faces
   - [ ] Fix bug that removes fragment from view when device is rotated.
 - [ ] Results 
