@@ -27,7 +27,7 @@
         app:layout_constraintStart_toStartOf="@+id/toolbar_captureImage"
         app:layout_constraintTop_toTopOf="@+id/toolbar_captureImage"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar_captureImage"
-        app:srcCompat="@drawable/arrow_back_black" />
+        app:srcCompat="@drawable/ic_arrow_back" />
 
     <TextView
         android:id="@+id/import_image_title"
@@ -65,5 +65,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/image_rotationScreen"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toTopOf="@+id/btn_extractFace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/cameraView_captureImage"
+        app:srcCompat="@drawable/ic_screen_rotation" />
 
 </android.support.constraint.ConstraintLayout>
