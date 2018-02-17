@@ -1,18 +1,20 @@
 package com.example.mark.estimation;
 
 import android.app.Activity;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import org.opencv.android.BaseLoaderCallback;
@@ -105,6 +107,12 @@ public class CaptureImageFragment extends Fragment implements CameraBridgeViewBa
         final View rootView = inflater.inflate(R.layout.fragment_capture_image, container, false);
 
         getActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+        /** Image to alert user that screen works best landscape. */
+        if (rootView.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            final ImageView image_rotationScreen = rootView.findViewById(R.id.image_rotationScreen);
+            image_rotationScreen.setVisibility(View.VISIBLE);
+        }
 
         mOpenCvCameraView = rootView.findViewById(R.id.cameraView_captureImage);
         mOpenCvCameraView.setVisibility(CameraBridgeViewBase.VISIBLE);
