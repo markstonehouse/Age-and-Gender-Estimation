@@ -19,7 +19,7 @@ An Android application utilising the OpenCV and Tensorflow frameworks to develop
   - [X] Remove DNN Test button from main menu.
 - [ ] Capture Image
   - [ ] Add front facing camera functionality.
-  - [ ] Add graphic to UI alerting user to rotate screen for better image capture.
+  - [X] Add graphic to UI alerting user to rotate screen for better image capture.
 - [X] Import Image
   - [ ] ~~Restyle native gallery intent to theme of application.~~
 - [ ] Multiple Faces
