@@ -6,17 +6,13 @@
     <!-- MainMenu button text -->
     <string name="capture_image_text">Capture Image</string>
     <string name="import_image_text">Import Image</string>
-    <string name="dnn_test_text">Dnn Test</string>
 
     <!-- Content descriptions -->
-    <string name="back_button_description">Back button to return to main menu</string>
     <string name="app_logo_description">Logo of the application</string>
     <string name="estimate_bitmap_description">Image of bitmap of face for Estimation</string>
 
     <!-- EstimateFaceFragmentFace text -->
     <string name="estimate_face">Estimate</string>
-
-    <string name="select_new_image_text">Select new image</string>
 
     <!-- MultipleFacesFragment text -->
     <string name="multiple_face_text">Multiple faces detected.</string>
@@ -25,6 +21,5 @@
     <!-- ResultsActivity -->
     <string name="results_text">Results</string>
     <string name="new_estimation_text">New Estimation</string>
-    <string name="title_activity_settings">Settings</string>
 
 </resources>

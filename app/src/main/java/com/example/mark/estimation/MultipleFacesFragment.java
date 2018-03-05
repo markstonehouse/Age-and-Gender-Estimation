@@ -11,19 +11,23 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-/**
+/*
  * Author: Mark Stonehouse
  * Student ID: 15085629
  * Project: Age & Gender EstimateFaceFragment - MMU Final Year Project
  * Supervisor: Dr Moi Hoon Yap
  * Version: 1.0
  */
-public class MultipleFacesFragment extends ListFragment {
 
-    private final String TAG = getTag();
+/**
+ * MultipleFacesFragment takes in an array of extracted faces and displays them in a list view.
+ * The user is prompted to select an image that will be used for estimation.
+ */
+public class MultipleFacesFragment extends ListFragment {
 
     private ArrayList<MultipleFaceRow> multipleFaces;
 
+    /* Once face has been selected it will be passed back to the parent activity. */
     public OnFaceSelectedListener fragmentCallback;
     public interface OnFaceSelectedListener {
         void onFaceSelected(Bitmap selectedFace);
@@ -70,6 +74,7 @@ public class MultipleFacesFragment extends ListFragment {
         setListAdapter(customAdapter);
     }   // onActivityCreated()
 
+    /** When list item is clicked of face it will be passed back to the parent activity. */
     @Override
     public void onListItemClick(ListView listView, View view, int position, long id) {
         fragmentCallback.onFaceSelected(multipleFaces.get(position).faceImage);
