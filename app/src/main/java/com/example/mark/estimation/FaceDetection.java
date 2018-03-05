@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 import static com.example.mark.estimation.MainMenu.getTag;
 
-/**
+/*
  * Author: Mark Stonehouse
  * Student ID: 15085629
  * Project: Age & Gender EstimateFaceFragment - MMU Final Year Project
@@ -30,19 +30,15 @@ import static com.example.mark.estimation.MainMenu.getTag;
 
 /**
  * Face detection object is responsible for the identifying of faces within a given image/mat.
- * If face found then return identifiedFaces array.
+ * If face found then returns identifiedFaces array.
  */
 public class FaceDetection {
 
-    // Get tag name "EstimateFaceFragment" to use when printing to Logcat
     private static final String TAG = getTag();
-
-    private Context context;
 
     private static final int JAVA_DETECTOR = 0;
     private static final int NATIVE_DETECTOR = 1;
 
-    private File mCascadeFile;
     private CascadeClassifier mJavaDetector;
     private DetectionBasedTracker mNativeDetector;
 
@@ -53,7 +49,7 @@ public class FaceDetection {
     private int mAbsoluteFaceSize = 0;
 
     public FaceDetection(Context c) {
-        context = c;
+        Context context = c;
 
         mDetectorName = new String[2];
         mDetectorName[JAVA_DETECTOR] = "Java";
@@ -65,7 +61,7 @@ public class FaceDetection {
             // load cascade file from application resources
             InputStream is = context.getResources().openRawResource(R.raw.haarcascade_frontalface_alt);
             File cascadeDir = context.getDir("cascade", Context.MODE_PRIVATE);
-            mCascadeFile = new File(cascadeDir, "haarcascade_frontalface_alt.xml");
+            File mCascadeFile = new File(cascadeDir, "haarcascade_frontalface_alt.xml");
             FileOutputStream os = new FileOutputStream(mCascadeFile);
 
             byte[] buffer = new byte[4096];
@@ -96,8 +92,8 @@ public class FaceDetection {
     }
 
     /**
-     * detectFaces is responsible for the searching of faces in a given mat then returning
-     * an array of rect.
+     * detectFacesInImage is responsible for converting bitmap to mat, retrieving found faces from
+     * detect faces and creating a array of bitmap extracted faces.
      */
     public ArrayList<Bitmap> detectFacesInImage(Bitmap bitmap) {
 
@@ -115,10 +111,12 @@ public class FaceDetection {
         return bitmapsArray;
     }   // detectFacesInImage()
 
+    /** detectFacesInCapture is responsible for returning an array of rect extracted faces. */
     public Rect[] detectFacesInCapture(Mat mGray) {
         return detectFaces(mGray);
     }   // detectFacesInCapture()
 
+    /** detectFaces takes a mat and performs a face detection before returning any identified faces. */
     private Rect[] detectFaces(Mat mGray) {
         if (mAbsoluteFaceSize == 0) {
             int height = mGray.rows();
@@ -134,12 +132,12 @@ public class FaceDetection {
             if (mJavaDetector != null)
                 mJavaDetector.detectMultiScale(mGray, foundFaces, 1.1, 2, 2,
                         new Size(mAbsoluteFaceSize, mAbsoluteFaceSize), new Size());
-        }
-        else if (mDetectorType == NATIVE_DETECTOR) {
+
+        } else if (mDetectorType == NATIVE_DETECTOR) {
             if (mNativeDetector != null)
                 mNativeDetector.detect(mGray, foundFaces);
-        }
-        else {
+
+        } else {
             Log.e(TAG, "Detection method is not selected!");
         }
 
@@ -148,6 +146,7 @@ public class FaceDetection {
         return identifiedFaces;
     }   // detectFaces()
 
+    /** getBitmapOfFace converts a mat to a bitmap. */
     private Bitmap getBitmapOfFace(Rect extractedFaces, Mat matFaceToExtract) {
         Mat matFace = matFaceToExtract.submat(extractedFaces);
 

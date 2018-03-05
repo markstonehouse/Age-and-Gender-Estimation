@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 import java.util.ArrayList;
 
-/**
+/*
  * Author: Mark Stonehouse
  * Student ID: 15085629
  * Project: Age & Gender EstimateFaceFragment - MMU Final Year Project
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 /**
  * CustomAdapater is used in the MultipleFacesFragment activity.
- * It is used to handle and style faces extracted from an image.
+ * Responsible for the handling and styling of faces extracted from an image.
  */
 public class CustomAdapter extends ArrayAdapter<MultipleFaceRow> {
 

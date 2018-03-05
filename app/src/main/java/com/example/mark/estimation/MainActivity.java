@@ -15,7 +15,7 @@ import java.util.concurrent.Executors;
 
 import static com.example.mark.estimation.MainMenu.getTag;
 
-/**
+/*
  * Author: Mark Stonehouse
  * Student ID: 15085629
  * Project: Age & Gender EstimateFaceFragment - MMU Final Year Project
@@ -26,14 +26,13 @@ public class MainActivity extends AppCompatActivity
         implements CaptureImageFragment.CaptureImageListener,
         MultipleFacesFragment.OnFaceSelectedListener {
 
-    private static final String TAG = getTag();
-
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private Bundle bundle = new Bundle();
 
     private final int RESULT_GALLERY = 0;
     private final int FRAGMENT_KEY = 1;
 
+    /* Global variable selectedImage used to store image of face for estimation. */
     private Bitmap selectedImage;
 
     private FaceDetection faceDetection;
@@ -42,21 +41,24 @@ public class MainActivity extends AppCompatActivity
     private Executor executor = Executors.newSingleThreadExecutor();
 
     private static final int INPUT_SIZE = 100;
-    private static final int IMAGE_MEAN = 117;
+    private static final int IMAGE_MEAN = 0;
     private static final float IMAGE_STD = 1;
     private static final String INPUT_NAME = "input_input";
     private static final String OUTPUT_NAME = "output/Softmax";
 
-    private static final String MODEL_FILE = "file:///android_asset/model_100_v3.pb";
-    private static final String LABEL_FILE = "file:///android_asset/model_100_labels_v3.txt";
+    private static final String GENDER_MODEL_FILE = "file:///android_asset/model_100_v3.pb";
+    private static final String GENDER_LABEL_FILE = "file:///android_asset/model_100_labels_v3.txt";
+    private static final String AGE_MODEL_FILE = "file:///android_asset/age_openface.pb";
+    private static final String AGE_LABEL_FILE = "file:///android_asset/age_labels.txt";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_activity);
 
-        faceDetection = new FaceDetection(this);
         initTensorFlowAndLoadModel();
+
+        faceDetection = new FaceDetection(this);
 
         if (getIntent().hasExtra("menuOption")) {
             switch (getIntent().getStringExtra("menuOption")) {
@@ -70,7 +72,6 @@ public class MainActivity extends AppCompatActivity
         }   // menuOptions
     }   // onCreate
 
-    /** Initialise and load tensorflow model used for performing DNN. */
     private void initTensorFlowAndLoadModel() {
         executor.execute(new Runnable() {
             @Override
@@ -78,8 +79,8 @@ public class MainActivity extends AppCompatActivity
                 try {
                     classifier = TensorFlowImageClassifier.create(
                             getAssets(),
-                            MODEL_FILE,
-                            LABEL_FILE,
+                            GENDER_MODEL_FILE,
+                            GENDER_LABEL_FILE,
                             INPUT_SIZE,
                             IMAGE_MEAN,
                             IMAGE_STD,
@@ -90,10 +91,10 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         });
-    }   // initTensorFlowAndLocalModel()
+    }
 
     /** Launches new gallery intent to select image to import. */
-    private void selectNewImage() {
+    public void selectNewImage() {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK,
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(galleryIntent, RESULT_GALLERY);
@@ -104,9 +105,12 @@ public class MainActivity extends AppCompatActivity
         return selectedImage;
     }   // getSelectedImage()
 
-    /** Pass in imported image and extract detected face from image. */
-    private void getFacesFromImage(Bitmap importedImage) {
-        ArrayList<Bitmap> foundFaces = faceDetection.detectFacesInImage(importedImage);
+    /** Set selected image chosen for import. */
+    private void setSelectedImage(Bitmap value) { this.selectedImage = value; }   // setSelectedImage()
+
+    /** Pass in imported image and process detected faces in image. */
+    private void getFacesFromImage() {
+        ArrayList<Bitmap> foundFaces = faceDetection.detectFacesInImage(getSelectedImage());
 
         if (foundFaces.size() != 0) {
             if (foundFaces.size() == 1) {
@@ -120,9 +124,9 @@ public class MainActivity extends AppCompatActivity
 
     /** Retrieves bitmap image of face, passes through DNN and passes results to EstimateFaceFragment. */
     private void processImage(Bitmap face) {
-        Bitmap scaleFace = Bitmap.createScaledBitmap(face, INPUT_SIZE, INPUT_SIZE, false);
+        Bitmap scaledFace = Bitmap.createScaledBitmap(face, INPUT_SIZE, INPUT_SIZE, false);
 
-        List<Classifier.Recognition> results = classifier.recognizeImage(scaleFace);
+        List<Classifier.Recognition> results = classifier.recognizeImage(scaledFace);
 
         fragmentEstimateFace(face, results.toString());
     }   // processImage()
@@ -134,13 +138,14 @@ public class MainActivity extends AppCompatActivity
 
         if (requestCode == RESULT_GALLERY && resultCode == RESULT_OK && data != null) {
             try {
-                selectedImage = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
+                setSelectedImage(MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData()));
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
 
-            if (selectedImage != null) {
-                getFacesFromImage(getSelectedImage());
+            if (getSelectedImage() != null) {
+                getFacesFromImage();
             }
 
         } else if (resultCode == RESULT_CANCELED) {
@@ -166,7 +171,8 @@ public class MainActivity extends AppCompatActivity
     /** Callback for CaptureImageFragment - returns bitmap of image captured by user. */
     @Override
     public void newImageCaptured(Bitmap selectedFace) {
-        processImage(selectedFace);
+        setSelectedImage(selectedFace);
+        getFacesFromImage();
     }   // newImageCaptured()
 
     /** Creates new MultipleFacesFragment - makes user select a single face from an image. */
@@ -187,12 +193,13 @@ public class MainActivity extends AppCompatActivity
      ** multiple faces. */
     @Override
     public void onFaceSelected(Bitmap selectedFace) {
-        processImage(selectedFace);
+        setSelectedImage(selectedFace);
+        getFacesFromImage();
     }   // onFaceSelected()
 
     /** Creates new EstimateFaceFragment - displays image and results from DNN. */
     private void fragmentEstimateFace(Bitmap data, String results) {
-        EstimateFaceFragment fragment = new EstimateFaceFragment();
+        EstimationResultsFragment fragment = new EstimationResultsFragment();
 
         bundle.putParcelable("bitmap", data);
         bundle.putString("results", results);

@@ -11,7 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-/**
+/*
  * Author: Mark Stonehouse
  * Student ID: 15085629
  * Project: Age & Gender EstimateFaceFragment - MMU Final Year Project
@@ -20,10 +20,10 @@ import android.widget.Toast;
  */
 public class MainMenu extends AppCompatActivity {
 
-    /** PERMISSIONS_GRANTED constant used for providing a value during permission check. */
+    /* PERMISSIONS_GRANTED constant used for providing a value during permission check. */
     private static final int PERMISSIONS_GRANTED = 0;
 
-    /** MENU_OPTION constant used for determining which fragment to load in MainActivity. */
+    /* MENU_OPTION constant used for determining which fragment to load in MainActivity. */
     private final String MENU_OPTION = "menuOption";
 
     @Override
@@ -31,10 +31,10 @@ public class MainMenu extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
-        /** Call permission check on app startup. */
+        /* Call permission check on app startup. */
         checkForPermissions();
 
-        /** Button to start new Capture activity. */
+        /* Button to start new Capture activity. */
         final Button btn_captureImage = findViewById(R.id.btn_captureImage);
         btn_captureImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,7 +45,7 @@ public class MainMenu extends AppCompatActivity {
             }
         }); // btn_captureImage
 
-        /** Button to start new ImportImage activity. */
+        /* Button to start new ImportImage activity. */
         final Button btn_importImage = findViewById(R.id.btn_importImage);
         btn_importImage.setOnClickListener(new View.OnClickListener() {
             @Override

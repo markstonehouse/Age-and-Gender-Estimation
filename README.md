@@ -17,15 +17,15 @@ An Android application utilising the OpenCV and Tensorflow frameworks to develop
   - [ ]  ~~Replace Toast messages with Snackbar messages for neater UI alerts.~~
 - [X] Main Menu
   - [X] Remove DNN Test button from main menu.
-- [ ] Capture Image
-  - [ ] Add front facing camera functionality.
-  - [ ] Add graphic to UI alerting user to rotate screen for better image capture.
+- [X] Capture Image
+  - [X] Add front facing camera functionality.
+  - [X] ~~Add graphic to UI alerting user to rotate screen for better image capture.~~
 - [X] Import Image
   - [ ] ~~Restyle native gallery intent to theme of application.~~
-- [ ] Multiple Faces
-  - [ ] Fix bug that removes fragment from view when device is rotated.
+- [X] Multiple Faces
+  - [X] Fix bug that removes fragment from view when device is rotated.
 - [ ] Results 
-  - [ ] Fix bug that crashes application when device is rotated or placed in background then resumed.
+  - [X] Fix bug that crashes application when device is rotated or placed in background then resumed.
   - [ ] Restyle results from model output.
 - [ ] Testing
   - [ ] Add unit tests to test code.

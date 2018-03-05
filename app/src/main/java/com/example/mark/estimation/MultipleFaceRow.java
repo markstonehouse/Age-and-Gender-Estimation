@@ -2,7 +2,7 @@ package com.example.mark.estimation;
 
 import android.graphics.Bitmap;
 
-/**
+/*
  * Author: Mark Stonehouse
  * Student ID: 15085629
  * Project: Age & Gender EstimateFaceFragment - MMU Final Year Project
