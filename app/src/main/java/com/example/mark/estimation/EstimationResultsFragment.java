@@ -1,16 +1,18 @@
 package com.example.mark.estimation;
 
+import android.content.pm.ActivityInfo;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class EstimateFaceFragment extends Fragment {
+public class EstimationResultsFragment extends Fragment {
 
     private final String TAG = getTag();
 
@@ -27,6 +29,8 @@ public class EstimateFaceFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View rootView = inflater.inflate(R.layout.fragment_estimate_face, container, false);
+
+        getActivity().getWindow().addFlags(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         imageViewResult = rootView.findViewById(R.id.imageViewResult);
         textViewResult = rootView.findViewById(R.id.textViewResult);
