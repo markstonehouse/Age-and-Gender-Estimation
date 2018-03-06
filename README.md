@@ -12,14 +12,16 @@ An Android application utilising the OpenCV and Tensorflow frameworks to develop
 - All results will displayed in a separate UI instance. 
 
 ## TODO
-- [X] General
+- [ ] General
   - [X] Change application logo to updated minimal background icon.
   - [ ]  ~~Replace Toast messages with Snackbar messages for neater UI alerts.~~
+  - [ ] Add option to open previous estimations.
 - [X] Main Menu
   - [X] Remove DNN Test button from main menu.
-- [X] Capture Image
+- [ ] Capture Image
   - [X] Add front facing camera functionality.
   - [X] ~~Add graphic to UI alerting user to rotate screen for better image capture.~~
+  - [ ] Add function that prompts user that they infact confirm to use captured image for estimation.
 - [X] Import Image
   - [ ] ~~Restyle native gallery intent to theme of application.~~
 - [X] Multiple Faces
@@ -27,6 +29,7 @@ An Android application utilising the OpenCV and Tensorflow frameworks to develop
 - [ ] Results 
   - [X] Fix bug that crashes application when device is rotated or placed in background then resumed.
   - [ ] Restyle results from model output.
+  - [ ] Add option to save image and/or estimation results to phone.
 - [ ] Testing
   - [ ] Add unit tests to test code.
   - [ ] Add tests to test UI elements and functionality.
