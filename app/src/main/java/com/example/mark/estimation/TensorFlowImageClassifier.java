@@ -85,6 +85,8 @@ public class TensorFlowImageClassifier implements Classifier {
         c.inputName = inputName;
         c.outputName = outputName;
 
+        Log.d("Testing", "TensorFlowImageClassifier created.");
+
         // Read the label names into memory.
         String actualFilename = labelFilename.split("file:///android_asset/")[1];
         Log.i(TAG, "Reading labels from: " + actualFilename);
@@ -125,6 +127,9 @@ public class TensorFlowImageClassifier implements Classifier {
 
     @Override
     public List<Recognition> recognizeImage(final Bitmap bitmap) {
+
+        Log.d("Testing", "Attempting to recognize image.");
+
         // Log this method so that it can be analyzed with systrace.
         Trace.beginSection("recognizeImage");
 
@@ -170,7 +175,7 @@ public class TensorFlowImageClassifier implements Classifier {
         for (int i = 0; i < outputs.length; ++i) {
             if (outputs[i] > THRESHOLD) {
 
-                Log.d("Testing", "outputs[" + i + "]" + labels.get(i) + "," + outputs[i]);
+                Log.d("Testing", "Print: " + outputs[i]);
 
                 pq.add(
                         new Recognition(
@@ -186,6 +191,9 @@ public class TensorFlowImageClassifier implements Classifier {
         }
 
         Trace.endSection(); // "recognizeImage"
+
+        Log.d("Testing", "Completed recognizing of image.");
+
         return recognitions;
     }
 

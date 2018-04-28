@@ -44,8 +44,12 @@ public class EstimationResultsFragment extends Fragment {
         Bitmap face = getArguments().getParcelable("bitmap");
         String results = getArguments().getString("results");
 
-        imageViewResult.setImageBitmap(face);
-        textViewResult.setText(results);
+        if (face != null && results != "") {
+            imageViewResult.setImageBitmap(face);
+            textViewResult.setText(results);
+        } else {
+            textViewResult.setText("Error loading results.");
+        }
 
         /* Button to head back to the MainMenu to begin to estimation. */
         btn_newEstimation.setOnClickListener(new View.OnClickListener() {

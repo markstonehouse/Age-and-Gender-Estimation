@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:visibility="visible"
-        app:show_fps="true"
+        app:show_fps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -55,5 +55,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/cameraView_captureImage"
         app:srcCompat="@drawable/ic_camera_selector" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:rotation="-90"
+        android:text="@string/text_rotateView"
+        android:textColor="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/btn_extractFace"
+        app:layout_constraintEnd_toEndOf="@+id/cameraView_captureImage"
+        app:layout_constraintTop_toBottomOf="@+id/btn_changeCamera" />
 
 </android.support.constraint.ConstraintLayout>

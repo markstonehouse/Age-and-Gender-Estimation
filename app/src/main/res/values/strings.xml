@@ -21,5 +21,6 @@
     <!-- ResultsActivity -->
     <string name="results_text">Results</string>
     <string name="new_estimation_text">New Estimation</string>
+    <string name="text_rotateView">Device must be landscape</string>
 
 </resources>
