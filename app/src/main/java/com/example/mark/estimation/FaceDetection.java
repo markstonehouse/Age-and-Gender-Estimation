@@ -97,6 +97,8 @@ public class FaceDetection {
      */
     public ArrayList<Bitmap> detectFacesInImage(Bitmap bitmap) {
 
+        Log.d("Testing", "Detecting faces in image.");
+
         Mat mGray = new Mat (bitmap.getHeight(), bitmap.getWidth(), CvType.CV_8UC1);
         Utils.bitmapToMat(bitmap, mGray);
 
@@ -107,6 +109,8 @@ public class FaceDetection {
         for (int i = 0; i < identifiedFaces.length; i++) {
             bitmapsArray.add(getBitmapOfFace(identifiedFaces[i], mGray));
         }
+
+        Log.d("Testing", identifiedFaces.length + " faces found in image.");
 
         return bitmapsArray;
     }   // detectFacesInImage()

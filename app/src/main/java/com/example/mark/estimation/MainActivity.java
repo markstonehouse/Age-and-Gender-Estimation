@@ -1,13 +1,22 @@
 package com.example.mark.estimation;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.renderscript.ScriptGroup;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.widget.Toast;
 
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -41,15 +50,14 @@ public class MainActivity extends AppCompatActivity
     private Executor executor = Executors.newSingleThreadExecutor();
 
     private static final int INPUT_SIZE = 100;
-    private static final int IMAGE_MEAN = 0;
+    private static final int IMAGE_MEAN = 114;
     private static final float IMAGE_STD = 1;
     private static final String INPUT_NAME = "input_input";
     private static final String OUTPUT_NAME = "output/Softmax";
 
     private static final String GENDER_MODEL_FILE = "file:///android_asset/model_100_v3.pb";
-    private static final String GENDER_LABEL_FILE = "file:///android_asset/model_100_labels_v3.txt";
-    private static final String AGE_MODEL_FILE = "file:///android_asset/age_openface.pb";
-    private static final String AGE_LABEL_FILE = "file:///android_asset/age_labels.txt";
+    private static final String GENDER_LABEL_FILE = "file:///android_asset/gender_labels.txt";
+//    private static final String AGE_LABEL_FILE = "file:///android_asset/age_labels.txt";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -70,7 +78,7 @@ public class MainActivity extends AppCompatActivity
                     break;
             }
         }   // menuOptions
-    }   // onCreate
+    }   // onCreate()
 
     private void initTensorFlowAndLoadModel() {
         executor.execute(new Runnable() {
@@ -91,12 +99,12 @@ public class MainActivity extends AppCompatActivity
                 }
             }
         });
-    }
+    }   // initTensorFlowAndLoadModel()
 
     /** Launches new gallery intent to select image to import. */
     public void selectNewImage() {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK,
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(galleryIntent, RESULT_GALLERY);
     }   // selectNewImage()
 
@@ -119,6 +127,9 @@ public class MainActivity extends AppCompatActivity
             if (foundFaces.size() > 1) {
                 fragmentMultipleFaces(foundFaces);
             }
+        } else {
+            Toast.makeText(this, "No faces found in image", Toast.LENGTH_SHORT).show();
+            finish();
         }
     }   // getFaceFromImage()
 
@@ -139,15 +150,12 @@ public class MainActivity extends AppCompatActivity
         if (requestCode == RESULT_GALLERY && resultCode == RESULT_OK && data != null) {
             try {
                 setSelectedImage(MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData()));
+                Log.d("Testing", "Path: " + data.getData().getPath());
+                getFacesFromImage();
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-            if (getSelectedImage() != null) {
-                getFacesFromImage();
-            }
-
         } else if (resultCode == RESULT_CANCELED) {
             finish();
         }
